@@ -1,13 +1,18 @@
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
-public class Constructive_Quicksort {
+public class Constructive_QuicksortNoDupli {
 
 	//Generic method accepts any type
-	public static <E extends Comparable<? super E>> List<E> sort(List<E> list){
-		if(list.size() < 2){
-			return list;
+	public static <E extends Comparable<? super E>> List<E> sort(List<E> passedList){
+		if(passedList.size() < 2){
+			return passedList;
 		}
+		//here we use LinkedHashSet to delete duplicates
+		LinkedHashSet<E> setlist = new LinkedHashSet<E>(passedList);
+		List<E> list = new ArrayList<E>(setlist);
+		
 		List<E> smaller = new ArrayList<E>(); // empty list for one side of the list
 		List<E> greater = new ArrayList<E>(); //empty list for other side of the list
 		E pivot = list.get(0); // using first index as pivot will be very slow if list is already sorted
@@ -40,7 +45,7 @@ public class Constructive_Quicksort {
 		list.add(10);
 		list.add(22);
 		list.add(5);
-		list.add(2);
+		list.add(3);
 		System.out.println("current list : " +list);
 		System.out.println("sorted list : " +sort(list));
 		
